@@ -1,0 +1,16 @@
+---
+import Navbar from "../components/navbar.astro";
+import FooterContent from "../components/footer.astro";
+---
+
+<div class="grid grid-flow-row grid-rows-3">
+  <header>
+    <Navbar />
+  </header>
+  <main class="basis-1/2">
+    <slot />
+  </main>
+  <footer>
+    <FooterContent />
+  </footer>
+</div>

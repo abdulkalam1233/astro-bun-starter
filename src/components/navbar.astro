@@ -1,0 +1,56 @@
+---
+
+---
+
+<div class="root__container">
+  <div class="intro__container">
+    <h1>Abdul Kalam</h1>
+    <p>/</p>
+    <p>Software CraftsPerson</p>
+  </div>
+  <div x-data="tabs" class="tabs__container">
+    <a href="#" class="capitalize" x-on:click={"onTabSelect"}>About Me</a>
+    <a href="#" class="capitalize" x-on:click={"onTabSelect"}>Resume</a>
+    <a href="#" class="capitalize" x-on:click={"onTabSelect"}>Projects</a>
+    <a href="#" class="capitalize" x-on:click={"onTabSelect"}>Contact</a>
+  </div>
+</div>
+
+<script>
+  import Alpine from "alpinejs";
+  document.addEventListener("alpine:init", () => {
+    Alpine.data(
+      "tabs",
+      (): {
+        selectedTab: HTMLElement | undefined;
+        onTabSelect: (e: MouseEvent) => void;
+      } => ({
+        selectedTab: undefined,
+        onTabSelect(e) {
+          e.preventDefault();
+          e.stopImmediatePropagation();
+          if (this.selectedTab) {
+            this.selectedTab?.classList.remove("active__tab");
+          }
+          this.selectedTab = e.target as HTMLElement;
+          this.selectedTab.classList.add("active__tab");
+        },
+      })
+    );
+  });
+</script>
+
+<style>
+  .root__container {
+    @apply flex justify-between;
+  }
+  .active__tab {
+    @apply text-blue-500;
+  }
+  .tabs__container {
+    @apply flex gap-2 self-end;
+  }
+  .intro__container {
+    @apply flex gap-2;
+  }
+</style>
